@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#memory-game">Memory Game</a></li>
+        <li><a href="#quote-generator">Random Quote Generator</a></li>
+        <li><a href="#qna">Q&A</a></li>
+        <li><a href="">Github</a></li>
+    </ul>
+</nav>
+
+<!-- Sections -->
+<section id="home">
+    <!-- Home content goes here -->
+    <div class="explore_container">
+        <img src="background.jpg" alt="">
+        <button class="explore" id="explore" > <a href="#explore">Explore</a></button>
+    </div>
+</section>
+
+
+<section id="home2">
+    <!-- Home content goes here -->
+    <h1><font>Goal of website</font></h1>
+    <h2><font>Test your memory with cards game</font></h2>
+    <div class="p_con">
+        <p class="game">The memory game is a game of which you are supposed to recall and match identical cards by flipping them to find pairs.
+            It's a challenging game that helps with sharpening memory and concentration abilities.
+        </p>
+    </div>
+
+    <div class="game_play_container">
+        <div class="timer_container">
+            <img src="timer.svg" alt="">
+            <p>The timer section calculates how much time you spent to complete the game</p>
+        </div>
+        <div class="cards_container">
+            <img src="cards.svg" alt="">
+            <p>The cards section calculates how many cards you have collected</p>
+        </div>
+        <div class="pause_container">
+            <img src="pause.svg" alt="">
+            <p>When pausing the game, you won't have acces to cards till the game is resumed again</p>
+        </div>
+        <div class="refresh_container">
+            <img src="refresh.svg" alt="">
+            <p>When resuming the game. The timer will continue the track and you can continue the game</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="memory-game">
+    <!-- Memory Game content goes here -->
+    <div class="start_game_container">
+        <button class="start_game" onclick="startGame()"> <a href="#sections"> Start game </a></button>
+    </div>
+    <div class="sections" id="sections">
+        <div class="left-section">
+            <div>
+                <img src="" alt=""> Timer: <span id="timer">00:00</span>
+            </div>
+            <div>
+                <img src="" alt=""> Cards: <span id="cards-collected">0</span>
+            </div>
+            <div class="buttons_con">
+                <button onclick="pause()"> <img src="pause.svg"  id="image1" alt=""></button>
+                <button onclick="resume()"> <img src="refresh.svg" id="image2"  alt=""></button>
+            </div>
+            
+        </div>
+
+        <div class="middle-section">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+            <img src="" alt="" id="" class="card" onclick="switchImage(this)">
+        </div>
+    </div>
+
+</section>
+
+<section id="quote-generator">
+    <!-- Random Quote Generator content goes here -->
+    <div class="quote_button">
+        <h2><font>Quote generated randomly using API </font></h2>
+        <div class="quote_container">
+            <p id="quote"></p>
+            <div class="auth_cont"> <p id="author"></p> </div>
+        </div>
+        <div class="change_quote_cnt">
+            <button onclick="getRandomQuote()">Change quote</button>
+        </div>
+    </div>
+    
+</section>
+
+<section id="qna">
+    <!-- Q&A content goes here -->
+    <h2 class="h2"><font>What are the difficulties endured while coding?</font></h2>
+    <div class="Difficulties">
+        <p>At first, I assigned identical cards the same ID for tracking. But this affected the manipulation of cards, which made the interraction works only with the first cards.
+           <br> <font>Solution:</font> Using a new attribute instead of their id, to shuffle the cards and keep track of identic ones
+        </p>
+        <p>
+            The timer wasn't functionning as it should when the "start game" button is clicked more than once. Apparently, each time the button is clicked, a new timer is generated, which makes more than one timer manipulating the timer section.
+            <br> <font>Solution:</font> Using a variable to keep tracking the interval of timer, to know when to use a "clearInterval" or  "setInterval"
+        </p>
+        <p>
+            When the game is pause, the user can get to play even if the timer is paused, which is considered as cheating.
+            <br> <font>Solution:</font> Disabeling the interraction between user and the games section, untill the resume button is clicked
+        </p>
+    </div>
+    <h2 class="h2"><font>How is the quote generated?</font></h2>
+    <p class="quote_api">
+        The quotes are generated using an <font>API</font>. the data gets fetched. After that, the quote and its author gets extracted and saved in the quote section. This API has a limit requests by time. So it's normal to get an error after trying too many times. You can come back later and it will work again.
+    </p>
+    <h2 class="h2"><font>API and Images references:</font></h2>
+    <ul class="ref">
+        <li><a href="https://api.quotable.io/random" target="_blank">api.quotable.io</a></li>
+        <li><a href="https://www.svgrepo.com">SVGRepo</a></li>
+        <li><a href="https://app.haikei.app">Haikei</a></li>
+        <li><a href="https://www.pexels.com/fr-fr/">Pexels</a></li>
+    </ul>
+</section>
+
+<!-- Add your scripts and additional content here -->
+<script src="script.js"></script>
+</body>
+</html>
