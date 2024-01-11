@@ -134,17 +134,30 @@ function resume(){
 }
 
 function getRandomQuote() {
-    fetch('https://api.quotable.io/random')
-        .then(response => response.json())
+         // Using a CORS proxy to bypass CORS restrictions
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = 'https://favqs.com/api/qotd';
+    
+    fetch(proxyUrl + apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-            const quote = data.content;
-            const author = data.author;
+            const quote = data.quote.body;
+            const author = data.quote.author;
+
+            // Display the quote and author on the webpage
             document.getElementById('quote').innerHTML = `"${quote}"`;
             document.getElementById('author').innerHTML = `- ${author}`;
         })
         .catch(error => {
             console.error('Error fetching the random quote:', error);
-            document.getElementById('quote').innerHTML = 'Too many essays to fetch a quote lead to failure. Please try again later.';
+            document.getElementById('quote').innerHTML = 'Too many essays to fetch a quote lead the API request to failure. Please try again later.';
         });
+        
+        
 }
 getRandomQuote();
