@@ -5,6 +5,8 @@ var intervalId;
 var cards_num;
 var paused=false;
 var gameCompleted;
+var clickableCards=[];
+
 function timer(){
     if(s<10 && m<10){
         document.getElementById('timer').textContent='0'+m+':0'+s;
@@ -51,6 +53,7 @@ function startGame() {
         for (let i = 0; i < cardSet.length; i++) {
             cardImages[i].src = "cards/" + cardSet[i] + ".jpg";
             cardImages[i].setAttribute('data-card-index', i);  // Set a custom attribute for index
+            clickableCards[i]=true;
         }
         setTimeout(hideAllImages, 2000);
         intervalId = setInterval(timer, 1000);
@@ -67,7 +70,9 @@ var image_swipe_counter = [-1, -1];
 var image_swiped_index = [-1, -1];
 
 function switchImage(image) {
-    if (!gameCompleted) {
+    const index = parseInt(image.getAttribute('data-card-index'));
+
+    if (!gameCompleted  && clickableCards[index]) {
         if (image_swipe_counter[0] === -1) {
             image_swiped_index[0] = parseInt(image.getAttribute('data-card-index'));
             image.src = "cards/" + cardSet[image_swiped_index[0]] + ".jpg";
@@ -87,6 +92,8 @@ function testCards(index1, index2) {
     if (cardSet[index1] === cardSet[index2]) {
         cards_num++;
         document.getElementById('cards-collected').textContent=cards_num;
+        clickableCards[index1] = false; // Set the card as unclickable
+        clickableCards[index2] = false;
         image_swipe_counter = [-1, -1];
     } else {
         setTimeout(function() {
