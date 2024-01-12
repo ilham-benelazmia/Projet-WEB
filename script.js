@@ -136,30 +136,24 @@ function resume(){
 }
 
 function getRandomQuote() {
-             // Using a CORS proxy to bypass CORS restrictions
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'https://favqs.com/api/qotd';
-    
-    fetch(proxyUrl + apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const quote = data.quote.body;
-            const author = data.quote.author;
-
+    var category = 'happiness'
+    $.ajax({
+        method: 'GET',
+        url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
+        headers: { 'X-Api-Key': 'GePwwED2I0gjnuw6bHwncw==vuZ1GDEQ9mh1L3Zy'},
+        contentType: 'application/json',
+        success: function(result) {
+            console.log(result);
+            const quote = result[0].quote; // Assuming the first quote in the result array
+            const author = result[0].author;
             // Display the quote and author on the webpage
             document.getElementById('quote').innerHTML = `"${quote}"`;
             document.getElementById('author').innerHTML = `- ${author}`;
-        })
-        .catch(error => {
-            console.error('Error fetching the random quote:', error);
-            document.getElementById('quote').innerHTML = 'Too many essays to fetch a quote lead the API request to failure. Please try again later.';
-        });
-
-
+        },
+        error: function ajaxError(jqXHR) {
+            console.error('Error: ', jqXHR.responseText);
+            document.getElementById('quote').innerHTML = 'Apparently, our website reached its limit rate of generating random quotes from the API, or too many essays to fetch a quote led the API request to failure. Please try again later.';
+        }
+    });
 }
 getRandomQuote();
