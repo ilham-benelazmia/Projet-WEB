@@ -140,7 +140,7 @@ function getRandomQuote() {
     $.ajax({
         method: 'GET',
         url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
-        headers: { 'X-Api-Key': 'GePwwED2I0gjnuw6bHwncw==vuZ1GDEQ9mh1L3Zy'},
+        headers: { 'X-Api-Key': ''},
         contentType: 'application/json',
         success: function(result) {
             console.log(result);
