@@ -42,6 +42,8 @@ function startGame() {
         var section = document.getElementsByClassName('sections')[0];
         section.style.visibility = 'visible';
         gameCompleted = false;
+        let container = document.querySelector('.middle-section');
+        container.classList.remove('disabled-container');
         if (intervalId) {
             clearInterval(intervalId);
         }
@@ -134,7 +136,7 @@ function resume(){
 }
 
 function getRandomQuote() {
-         // Using a CORS proxy to bypass CORS restrictions
+             // Using a CORS proxy to bypass CORS restrictions
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const apiUrl = 'https://favqs.com/api/qotd';
     
@@ -157,7 +159,7 @@ function getRandomQuote() {
             console.error('Error fetching the random quote:', error);
             document.getElementById('quote').innerHTML = 'Too many essays to fetch a quote lead the API request to failure. Please try again later.';
         });
-        
-        
+
+
 }
 getRandomQuote();
